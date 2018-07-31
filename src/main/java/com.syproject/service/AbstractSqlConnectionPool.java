@@ -59,7 +59,7 @@ public abstract class AbstractSqlConnectionPool<T> implements SqlConnectionPool 
   @Override
   public Connection getConnection(final Racetrack racetrack) throws SQLException {
     try {
-      log.debug("name: {}, clazz: {}, hostname: {}, port: {},endpoint: {}, username: {}",
+      log.info("name: {}, clazz: {}, hostname: {}, port: {},endpoint: {}, username: {}",
               racetrack.getName(), racetrack.getClazz(), racetrack.getHostname(),
               racetrack.getPort(), racetrack.getEndpoint(), racetrack.getUsername());
       String key = key(racetrack);
@@ -102,7 +102,7 @@ public abstract class AbstractSqlConnectionPool<T> implements SqlConnectionPool 
   protected String buildConnector(Racetrack racetrack) {
     String props = "?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&socketTimeout=30000&connectTimeout=30000&zeroDateTimeBehavior=convertToNull";
     if (racetrack.getClazz().contains("mysql")) {
-      return "jdbc:mysql://" + racetrack.getHostname() + ":" + racetrack.getPort() + "/" + racetrack.getEndpoint() + props;
+      return "jdbc:mysql://" + racetrack.getHostname() + "/" + racetrack.getEndpoint() + props;
     }
     throw new UnsupportedOperationException("Can't support clazz: " + racetrack.getClazz());
   }

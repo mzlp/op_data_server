@@ -101,7 +101,6 @@
 			<artifactId>bonecp</artifactId>
 			<version>${bonecp.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
